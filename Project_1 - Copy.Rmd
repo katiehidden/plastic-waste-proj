@@ -1,5 +1,10 @@
 ---
 title: "Coastal Populations and Mismanaged Plastic Waste in 2010"
+knit: (function(input_file, encoding) {
+  out_dir <- 'docs';
+  rmarkdown::render(input_file,
+ encoding=encoding,
+ output_file=file.path(dirname(input_file), out_dir, 'index.html'))})
 author: "Katie Hidden"
 date: "Last updated: `r Sys.Date()`"
 output:
