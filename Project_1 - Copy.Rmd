@@ -294,6 +294,6 @@ ggplot(data = data_coastal, aes(x = coastal_pop, y = mismanaged_waste)) +
 
 ## Reference
 
-Hannah Ritchie and Max Roser (2018) - "Plastic Pollution". Published online at OurWorldInData.org. Retrieved from: 'https://ourworldindata.org/plastic-pollution' [Online Resource]
+Hannah Ritchie and Max Roser (2018) - "Plastic Pollution". Published online at OurWorldInData.org. Retrieved from: 'https://ourworldindata.org/plastic-pollution' [Online Resource] 
 
 <br>
