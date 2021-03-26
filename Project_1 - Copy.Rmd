@@ -74,22 +74,6 @@ addUnits <- function(n) {
 }
 ```
 
-```{r data}
-data_full <- read_csv("coastal-population-vs-mismanaged-plastic.csv")
-
-# Making simple column names:
-"coastal_pop" -> names(data_full)[names(data_full) == "Coastal population"]
-"mismanaged_waste" -> names(data_full)[names(data_full) == "Total mismanaged plastic waste in 2010"]
-"total_pop" -> names(data_full)[names(data_full) == "Total population (Gapminder, HYDE & UN)"]
-"country" -> names(data_full)[names(data_full) == "Entity"]
-
-# The dataset includes inland populations data which have null values for the columns "Coastal population" and "Total mismanaged plastic waste in 2010"). Filtering the data to only include coastal populations:
-data_coastal <- data_full[!is.na(data_full$coastal_pop), ]
-
-# Removing irrelevant columns (country code is redundant information, year is 2010 for all rows, continent is null for most rows)
-data_coastal <- subset(data_coastal, select = -c(Code, Year, Continent) )
-```
-
 ## Introduction
 
 &emsp;&emsp; The first synthetic plastic was created at the start of the twentieth century. Since the 1950s, worldwide plastic production has increased dramatically; In 2015, 381 million metric tons of plastic was produced globally. Plastic waste is mostly managed well and contained throughout the world, however some plastic waste is inadequately disposed of and ends up in the ocean, transported by wind, inland waterways, and wastewater systems. Ocean wildlife is especially vulnerable to harmful impacts from plastic pollution, mainly through entanglement and ingestion of plastics (Roser, 2018).
@@ -105,6 +89,23 @@ data_coastal <- subset(data_coastal, select = -c(Code, Year, Continent) )
 
  - Coastal population: includes the total population within 50 kilometers of a coastline in 2010.
 
+<br>
+
+```{r data, warning=FALSE, message=FALSE}
+data_full <- read_csv("coastal-population-vs-mismanaged-plastic.csv")
+
+# Making simple column names:
+"coastal_pop" -> names(data_full)[names(data_full) == "Coastal population"]
+"mismanaged_waste" -> names(data_full)[names(data_full) == "Total mismanaged plastic waste in 2010"]
+"total_pop" -> names(data_full)[names(data_full) == "Total population (Gapminder, HYDE & UN)"]
+"country" -> names(data_full)[names(data_full) == "Entity"]
+
+# The dataset includes inland populations data which have null values for the columns "Coastal population" and "Total mismanaged plastic waste in 2010"). Filtering the data to only include coastal populations:
+data_coastal <- data_full[!is.na(data_full$coastal_pop), ]
+
+# Removing irrelevant columns (country code is redundant information, year is 2010 for all rows, continent is null for most rows)
+data_coastal <- subset(data_coastal, select = -c(Code, Year, Continent) )
+```
 <br>
 
 ## Data Exploration
@@ -194,7 +195,7 @@ print(mismanaged_waste_boxplot, vp = viewport(layout.pos.row = 1, layout.pos.col
 
 ## Regression Model
 
-```{r model}
+```{r model, warning=FALSE, message=FALSE}
 data_coastal_model <- lm(mismanaged_waste ~ coastal_pop, data=data_coastal)
 data_coastal_coef <- coefficients(data_coastal_model)
 data_coastal_anova <- anova(data_coastal_model)
@@ -217,7 +218,7 @@ The resulting regression model is
 
 ### Coastal Population vs. Mismanaged Plastic Waste:
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 ggplot(data = data_coastal, aes(x = coastal_pop, y = mismanaged_waste)) + 
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm", se = FALSE, color='forest green') +
@@ -235,7 +236,7 @@ ggplot(data = data_coastal, aes(x = coastal_pop, y = mismanaged_waste)) +
 
 <br>
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 ggplot(data = data_coastal, aes(x = coastal_pop, y = mismanaged_waste)) + 
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm", se = FALSE, color='forest green') +
