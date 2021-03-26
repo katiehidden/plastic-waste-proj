@@ -290,7 +290,7 @@ ggplot(data = data_coastal, aes(x = coastal_pop, y = mismanaged_waste)) +
 
 &emsp;&emsp; The data suggests that the larger the coastal population, the greater the amount of mismanaged plastic waste there is. Most of the population sizes in the dataset are relatively small, resulting in a heavy right skew for both variables. When a logarithmic transformation is applied to the scatterplot axes, data points appear to fall neatly around the regression line.  There is sufficient evidence to suggest that the weight of mismanaged plastic waste is significantly predicted by coastal population size; the hypothesis test for significance of the regression line yields $`r p.value.string(data_coastal_t$"Pr(>|t|)"[2])`$. Approximately `r 100*round(data_coastal_summary$r.squared, digits = 2)`% of the variance in the weight of mismanaged plastic waste is explained by the current model, which indicates that the regression model fits the data well.
 
-<br>
+<br> 
 
 ## Reference
 
